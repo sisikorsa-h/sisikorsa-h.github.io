@@ -121,7 +121,6 @@
             top: -2px;
         }
         
-        /* 引导订阅触发区域 */
         .subscribe-section {
             background: #fdf8f9;
             border: 1px solid #fcebeb;
@@ -161,7 +160,6 @@
             transform: scale(0.96);
         }
 
-        /* 隐藏的悬浮收款码弹窗遮罩层 */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -169,7 +167,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px); /* 毛玻璃磨砂效果 */
+            backdrop-filter: blur(8px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -178,7 +176,6 @@
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-        /* 弹窗激活状态 */
         .modal-overlay.active {
             opacity: 1;
             pointer-events: auto;
@@ -221,7 +218,6 @@
             color: #999;
             margin-top: 8px;
         }
-
         .footer {
             text-align: center;
             padding: 20px;
@@ -242,32 +238,28 @@
             <span>📍 东莞</span>
             <span>📅 自动更新成功</span>
         </div>
-        <div class="weather-badge">🌡️ 28°C (体感 31.2°C) | 💧 湿度 85%</div>
+        <div class="weather-badge">🌡️ 28°C (多云) | 🌤️ 低温 26℃ ~ 高温 32℃</div>
     </div>
     
     <div class="content">
-        <div class="section-title">今日主推风格</div>
+        <div class="section-title">今日主推风格 (City Boy 干净流 & 法式清爽风)</div>
         
         <div class="card female">
-            <div class="card-title">♀️ 女生推荐：法式清爽风</div>
-            <div class="card-text">
-                👗 亚麻质地吊带连衣长裙 + 薄款防晒开衫<br>
-                👡 罗马平底凉鞋 + 草编遮阳帽
-            </div>
+            <div class="card-title">♀️ 女生推荐：</div>
+            <div class="card-text">👗 亚麻质地吊带连衣长裙 + 薄款防晒开衫<br>👡 罗马平底凉鞋 + 草编遮阳帽</div>
         </div>
 
         <div class="card male">
-            <div class="card-title">♂️ 男生推荐：City Boy 干净流</div>
-            <div class="card-text">
-                👕 华夫格落肩宽版短袖 + 泼水轻量机能短裤<br>
-                👟 踩屎感复古运动鞋 + 透气棒球帽
-            </div>
+            <div class="card-title">♂️ 男生推荐：</div>
+            <div class="card-text">👕 华夫格落肩宽版短袖 + 泼水轻量机能短裤<br>👟 踩屎感复古运动鞋 + 透气棒球帽</div>
         </div>
 
         <div class="section-title">气象管家避坑说</div>
         <ul class="tips-list">
-            <li><strong>防贴身尴尬：</strong> 今日东莞空气湿度高达 85%，体感极度闷热。请尽量避免穿纯棉 T 恤，出汗后易紧贴后背；强烈推荐速干或亚麻面料。</li>
-            <li><strong>突发降雨防范：</strong> 午后大概率有局地阵雨。出门建议携带轻量折叠雨伞，鞋子选择防水或易干材质。</li>
+            
+        <li><strong>穿衣轻便出行：</strong> 今日东莞天气为【多云】，体感舒适。适宜穿着轻薄短袖、衬衫或薄款连衣裙。</li>
+        <li><strong>午后局地微调：</strong> 夏日天气多变，虽然目前为多云，包里常备一把晴雨两用伞依然是私人管家给您的最稳妥建议。</li>
+    
         </ul>
 
         <div class="subscribe-section">
@@ -287,30 +279,24 @@
         <button class="close-btn" id="closeBtn">✕</button>
         <div style="font-size: 15px; font-weight: bold; color: #4a2831; margin-bottom: 4px;">扫码开通私人订阅</div>
         <div style="font-size: 12px; color: #666;">微信长按识别二维码付款</div>
-        
         <img src="wx_code.png" class="qr-image" alt="微信二维码">
-        
         <div class="modal-tip">付款后请添加管家微信激活专属推送</div>
     </div>
 </div>
 
 <script>
-    // 控制弹窗显示和关闭的极简安全脚本
     const openBtn = document.getElementById('openBtn');
     const closeBtn = document.getElementById('closeBtn');
     const modalOverlay = document.getElementById('modalOverlay');
 
-    // 点击按钮打开弹窗
     openBtn.addEventListener('click', () => {
         modalOverlay.classList.add('active');
     });
 
-    // 点击右上角叉叉关闭弹窗
     closeBtn.addEventListener('click', () => {
         modalOverlay.classList.remove('active');
     });
 
-    // 点击弹窗外部空白区域也能自动关闭，极佳的用户体验
     modalOverlay.addEventListener('click', (e) => {
         if (e.target === modalOverlay) {
             modalOverlay.classList.remove('active');
