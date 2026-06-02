@@ -2,10 +2,70 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>我的第一个免费网站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快捷话费充值中心</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100%; max-width: 400px; }
+        h2 { color: #333; margin-bottom: 20px; text-align: center; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #666; font-size: 14px; }
+        input[type="tel"] { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 18px; box-sizing: border-box; }
+        .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
+        .price-btn { padding: 15px 0; border: 1px solid #1677ff; border-radius: 8px; background: white; color: #1677ff; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; }
+        .price-btn.active { background: #1677ff; color: white; }
+        .submit-btn { width: 100%; padding: 14px; background: #52c41a; border: none; border-radius: 8px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .submit-btn:hover { background: #73d13d; }
+    </style>
 </head>
 <body>
-    <h1>🎉 恭喜！你的网站上线了！</h1>
-    <p>这是一个完全免费的 GitHub Pages 网站。</p>
+
+<div class="container">
+    <h2>📱 话费充值中心</h2>
+    
+    <div class="input-group">
+        <label for="phone">请输入手机号码</label>
+        <input type="tel" id="phone" placeholder="请输入11位手机号" maxlength="11">
+    </div>
+
+    <label>选择充值面额</label>
+    <div class="price-grid">
+        <button class="price-btn active" onclick="selectPrice(this, 30)">30元</button>
+        <button class="price-btn" onclick="selectPrice(this, 50)">50元</button>
+        <button class="price-btn" onclick="selectPrice(this, 100)">100元</button>
+    </div>
+
+    <button class="submit-btn" onclick="startPay()">立即充值</button>
+</div>
+
+<script>
+    // 记录用户选中的金额，默认30
+    let selectedAmount = 30; 
+
+    // 切换面额按钮样式的动态函数
+    function selectPrice(element, amount) {
+        // 移除其他按钮的选中样式
+        document.querySelectorAll('.price-btn').forEach(btn => btn.classList.remove('active'));
+        // 给当前点击的按钮加上选中样式
+        element.classList.add('active');
+        // 更新选中的金额
+        selectedAmount = amount;
+    }
+
+    // 点击充值的动态函数
+    function startPay() {
+        const phoneInput = document.getElementById('phone').value;
+        
+        // 验证手机号是否输入正确
+        if (phoneInput.length !== 11 || isNaN(phoneInput)) {
+            alert('❌ 请输入正确的11位手机号码！');
+            return;
+        }
+        
+        // 弹出动态提示框
+        alert(`🎉 模拟充值成功！\n号码：${phoneInput}\n金额：${selectedAmount}元\n\n（提示：当前为前端演示，未对接真实支付接口）`);
+    }
+</script>
+
 </body>
 </html>
