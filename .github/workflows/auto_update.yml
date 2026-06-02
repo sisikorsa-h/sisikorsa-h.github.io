@@ -1,0 +1,30 @@
+name: 每日定时天气网页更新
+
+on:
+  schedule:
+    # 每天早上 6:30 自动运行 (UTC 时间 22:30 对应北京时间 06:30)
+    - cron: '30 22 * * *'
+  workflow_dispatch: # 允许你手动点击按钮触发运行
+
+jobs:
+  update-web:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 检查代码仓库
+      uses: actions/checkout@v3
+
+    - name: 设置 Python 环境
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: 运行后端 Python 脚本
+      run: python update_weather.py
+
+    - name: 自动把新网页提交回仓库
+      run: |
+        git config --global user.name "WeatherBot"
+        git config --global user.email "bot@github.com"
+        git add index.html
+        git commit -m "Automation: 每日穿搭指南定时更新" || echo "没有内容变化"
+        git push
