@@ -22,6 +22,7 @@
             max-width: 400px;
             overflow: hidden;
             border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
         }
         .header {
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
@@ -119,37 +120,108 @@
             left: 4px;
             top: -2px;
         }
-        .qr-section {
+        
+        /* 引导订阅触发区域 */
+        .subscribe-section {
             background: #fdf8f9;
-            border: 2px dashed #ff9a9e;
+            border: 1px solid #fcebeb;
             border-radius: 20px;
-            padding: 20px;
+            padding: 22px 20px;
             text-align: center;
             margin-top: 28px;
+            box-shadow: 0 6px 18px rgba(255,154,158,0.05);
         }
-        .qr-title {
+        .sub-title {
             font-size: 15px;
             font-weight: 700;
             color: #4a2831;
             margin-bottom: 6px;
         }
-        .qr-subtitle {
+        .sub-subtitle {
             font-size: 12px;
             color: #888;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             line-height: 1.4;
         }
-        .qr-image-wrapper {
+        .action-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #4a2831;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 12px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255,154,158,0.3);
+            transition: transform 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .action-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* 隐藏的悬浮收款码弹窗遮罩层 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px); /* 毛玻璃磨砂效果 */
             display: flex;
             justify-content: center;
-            margin-top: 10px;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        /* 弹窗激活状态 */
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-card {
+            background: white;
+            border-radius: 24px;
+            padding: 28px 24px;
+            width: 85%;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            transform: scale(0.85);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
         }
         .qr-image {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(255,154,158,0.15);
+            margin: 15px 0;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
         }
+        .close-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            font-size: 20px;
+            color: #aaa;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        .modal-tip {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+        }
+
         .footer {
             text-align: center;
             padding: 20px;
@@ -198,12 +270,10 @@
             <li><strong>突发降雨防范：</strong> 午后大概率有局地阵雨。出门建议携带轻量折叠雨伞，鞋子选择防水或易干材质。</li>
         </ul>
 
-        <div class="qr-section">
-            <div class="qr-title">👉 长按识别二维码订阅 (9.9元/月)</div>
-            <div class="qr-subtitle">添加私人管家，开通每日专属穿搭主动推送服务</div>
-            <div class="qr-image-wrapper">
-                <img src="wx_code.png" class="qr-image" alt="微信二维码">
-            </div>
+        <div class="subscribe-section">
+            <div class="sub-title">🌤️ 私人穿搭管家服务 (9.9元/月)</div>
+            <div class="sub-subtitle">开通后可添加专属微信，每日主动推送精细化防晒、避雨及穿搭策略</div>
+            <button class="action-btn" id="openBtn">👉 点击开通服务</button>
         </div>
     </div>
 
@@ -211,6 +281,42 @@
         自动化后端正在强力驱动 · 专属私域出品
     </div>
 </div>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+        <button class="close-btn" id="closeBtn">✕</button>
+        <div style="font-size: 15px; font-weight: bold; color: #4a2831; margin-bottom: 4px;">扫码开通私人订阅</div>
+        <div style="font-size: 12px; color: #666;">微信长按识别二维码付款</div>
+        
+        <img src="wx_code.png" class="qr-image" alt="微信二维码">
+        
+        <div class="modal-tip">付款后请添加管家微信激活专属推送</div>
+    </div>
+</div>
+
+<script>
+    // 控制弹窗显示和关闭的极简安全脚本
+    const openBtn = document.getElementById('openBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const modalOverlay = document.getElementById('modalOverlay');
+
+    // 点击按钮打开弹窗
+    openBtn.addEventListener('click', () => {
+        modalOverlay.classList.add('active');
+    });
+
+    // 点击右上角叉叉关闭弹窗
+    closeBtn.addEventListener('click', () => {
+        modalOverlay.classList.remove('active');
+    });
+
+    // 点击弹窗外部空白区域也能自动关闭，极佳的用户体验
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            modalOverlay.classList.remove('active');
+        }
+    });
+</script>
 
 </body>
 </html>
