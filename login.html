@@ -58,14 +58,13 @@
         // 2. 当用户点击按钮时，直接前往你的专属 Clerk 托管登录页面
         signInBtn.addEventListener('click', () => {
             
-            // ⚠️ 记得把下面这一行双引号里的网址，改成你自己在 Clerk 后台看到的那个测试网址！
-            // 就是之前在 Account Portal 页面里（图片 1000019108.jpg 中）显示的那串以 https://precious-chamois-1.a 开头的网址
+            // 已自动帮你根据截图拼接好完整的测试环境登录网址
             const clerkSignInUrl = "https://precious-chamois-1.accounts.dev/sign-in"; 
             
-            // 登录成功后，让它自动跳回到你的网站首页
+            // 登录成功后，自动跳回到你的网站首页
             const destinationUrl = "https://sisikorsa-h.github.io/index.html";
             
-            // 拼接成最终的跳转链接
+            // 拼接成最终的跳转链接并执行跳转
             window.location.href = `${clerkSignInUrl}?redirect_url=${encodeURIComponent(destinationUrl)}`;
         });
     </script>
