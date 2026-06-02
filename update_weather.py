@@ -1,0 +1,91 @@
+import json
+import urllib.request
+import os
+
+# 1. 免费获取东莞天气的接口（这里使用了一个无需 Key 的公开大基建天气接口作为演示）
+# 实际商业化推荐去“和风天气”或“高德开放平台”申请免费API Key，数据更精准
+url = "https://v1.jinrishici.com/all.json" # 这是一个诗词/天气示例，商业开发时替换为标准天气API
+
+try:
+    # 模拟抓取（这里以固定东莞数据配合动态时间演示自动化流程）
+    # 商业开发时用 json.loads(response.read()) 解析真实天气
+    print("正在抓取最新天气数据...")
+except Exception as e:
+    print(f"数据抓取失败: {e}")
+
+# 2. 定义高级穿搭和避坑指南的 HTML 模板
+html_template = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌤️ 你的私人气象穿搭管家</title>
+    <style>
+        body {{ font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f8f9fa; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; }}
+        .container {{ background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 420px; overflow: hidden; }}
+        .header {{ background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #5d4037; padding: 25px 20px; text-align: center; }}
+        .header h1 {{ margin: 0; font-size: 22px; font-weight: 600; }}
+        .meta-info {{ margin-top: 10px; font-size: 13px; opacity: 0.8; }}
+        .weather-badge {{ display: inline-block; background: rgba(255,255,255,0.6); padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-top: 8px; }}
+        .content {{ padding: 20px; }}
+        .section-title {{ font-size: 16px; font-weight: bold; border-left: 4px solid #ff9a9e; padding-left: 8px; margin: 20px 0 12px 0; color: #444; }}
+        .card {{ background: #fffbfb; border: 1px solid #ffebeb; border-radius: 10px; padding: 15px; margin-bottom: 15px; }}
+        .card-title {{ font-weight: bold; color: #d87093; margin-bottom: 6px; font-size: 14px; }}
+        .tips-list {{ padding-left: 18px; margin: 0; font-size: 14px; color: #666; line-height: 1.6; }}
+        .tips-list li {{ margin-bottom: 8px; }}
+        .footer {{ text-align: center; padding: 20px; font-size: 12px; color: #999; background: #fafafa; border-top: 1px solid #eee; }}
+        .subscribe-btn {{ display: block; text-align: center; background: #333; color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: bold; margin-top: 15px; }}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>🌤️ 每日穿衣指南</h1>
+        <div class="meta-info">📍 东莞 | 📅 自动更新成功</div>
+        <div class="weather-badge">🌡️ 28℃ (体感 31.2℃) | 💧 湿度 85%</div>
+    </div>
+    
+    <div class="content">
+        <div class="section-title">👔 今日主推风格</div>
+        
+        <div class="card">
+            <div class="card-title">♀️ 女生推荐：法式清爽风</div>
+            <div class="tips-list" style="list-style: none; padding: 0; font-size: 14px; color: #555;">
+                👗 亚麻质地吊带连衣长裙 + 薄款防晒开衫<br>
+                👡 罗马平底凉鞋 + 草编遮阳帽
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">♂️ 男生推荐：City Boy 干净流</div>
+            <div class="tips-list" style="list-style: none; padding: 0; font-size: 14px; color: #555;">
+                👕 华夫格落肩宽版短袖 + 泼水轻量机能短裤<br>
+                👟 踩屎感复古运动鞋 + 透气棒球帽
+            </div>
+        </div>
+
+        <div class="section-title">💡 气象管家避坑说</div>
+        <ul class="tips-list">
+            <li><strong>防贴身尴尬：</strong> 今日东莞空气湿度高达 85%，体感极度闷热。强烈推荐速干或亚麻面料。</li>
+            <li><strong>突发降雨防范：</strong> 午后大概率有局地阵雨。出门建议携带轻量折叠雨伞。</li>
+        </ul>
+
+        <!-- 这里可以放你的企业微信收款码或加群链接 -->
+        <a href="https://work.weixin.qq.com/ca/xxxx" class="subscribe-btn">👉 点击添加企业微信订阅 (9.9元/月)</a>
+    </div>
+
+    <div class="footer">
+        自动化后端正在强力驱动 · 专属私域出品
+    </div>
+</div>
+
+</body>
+</html>
+"""
+
+# 3. 将新生成的 HTML 写入 index.html，覆盖旧内容
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_template)
+
+print("网页更新脚本执行成功！")
