@@ -3,69 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>快捷话费充值中心</title>
+    <title>🌤️ 你的私人气象穿搭管家</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100%; max-width: 400px; }
-        h2 { color: #333; margin-bottom: 20px; text-align: center; }
-        .input-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; color: #666; font-size: 14px; }
-        input[type="tel"] { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 18px; box-sizing: border-box; }
-        .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
-        .price-btn { padding: 15px 0; border: 1px solid #1677ff; border-radius: 8px; background: white; color: #1677ff; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; }
-        .price-btn.active { background: #1677ff; color: white; }
-        .submit-btn { width: 100%; padding: 14px; background: #52c41a; border: none; border-radius: 8px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; }
-        .submit-btn:hover { background: #73d13d; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f8f9fa; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 420px; overflow: hidden; }
+        .header { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #5d4037; padding: 25px 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 22px; font-weight: 600; }
+        .meta-info { margin-top: 10px; font-size: 13px; opacity: 0.8; }
+        .weather-badge { display: inline-block; background: rgba(255,255,255,0.6); padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-top: 8px; }
+        .content { padding: 20px; }
+        .section-title { font-size: 16px; font-weight: bold; border-left: 4px solid #ff9a9e; padding-left: 8px; margin: 20px 0 12px 0; color: #444; }
+        .card { background: #fffbfb; border: 1px solid #ffebeb; border-radius: 10px; padding: 15px; margin-bottom: 15px; }
+        .card-title { font-weight: bold; color: #d87093; margin-bottom: 6px; font-size: 14px; }
+        .tips-list { padding-left: 18px; margin: 0; font-size: 14px; color: #666; line-height: 1.6; }
+        .tips-list li { margin-bottom: 8px; }
+        .footer { text-align: center; padding: 20px; font-size: 12px; color: #999; background: #fafafa; border-top: 1px solid #eee; }
+        .subscribe-btn { display: block; text-align: center; background: #333; color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: bold; margin-top: 15px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>📱 话费充值中心</h2>
+    <!-- 头部天气看板 -->
+    <div class="header">
+        <h1>🌤️ 每日穿衣指南</h1>
+        <div class="meta-info">📍 东莞 | 📅 06月02日 07:30 更新</div>
+        <div class="weather-badge">🌡️ 28℃ (体感 31.2℃) | 💧 湿度 85%</div>
+    </div>
     
-    <div class="input-group">
-        <label for="phone">请输入手机号码</label>
-        <input type="tel" id="phone" placeholder="请输入11位手机号" maxlength="11">
+    <div class="content">
+        <!-- 核心推荐 -->
+        <div class="section-title">👔 今日主推风格</div>
+        
+        <div class="card">
+            <div class="card-title">♀️ 女生推荐：法式清爽风</div>
+            <div class="tips-list" style="list-style: none; padding: 0; font-size: 14px; color: #555;">
+                👗 亚麻质地吊带连衣长裙 + 薄款防晒开衫<br>
+                👡 罗马平底凉鞋 + 草编遮阳帽
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">♂️ 男生推荐：City Boy 干净流</div>
+            <div class="tips-list" style="list-style: none; padding: 0; font-size: 14px; color: #555;">
+                👕 华夫格落肩宽版短袖 + 泼水轻量机能短裤<br>
+                👟 踩屎感复古运动鞋 + 透气棒球帽
+            </div>
+        </div>
+
+        <!-- 避坑提示 -->
+        <div class="section-title">💡 气象管家避坑说</div>
+        <ul class="tips-list">
+            <li><strong>防贴身尴尬：</strong> 今日东莞空气湿度高达 85%，体感极度闷热。请尽量<strong>避免穿纯棉T恤</strong>，出汗后易紧贴后背；强烈推荐速干或亚麻面料。</li>
+            <li><strong>突发降雨防范：</strong> 风速 12km/h 且云量较厚，午后大概率有局地阵雨。出门建议携带<strong>轻量折叠雨伞</strong>，鞋子选择防水或易干材质。</li>
+        </ul>
+
+        <!-- 付费转化入口 -->
+        <a href="#" class="subscribe-btn">👉 点击订阅专属穿搭提醒 (9.9元/月)</a>
     </div>
 
-    <label>选择充值面额</label>
-    <div class="price-grid">
-        <button class="price-btn active" onclick="selectPrice(this, 30)">30元</button>
-        <button class="price-btn" onclick="selectPrice(this, 50)">50元</button>
-        <button class="price-btn" onclick="selectPrice(this, 100)">100元</button>
+    <div class="footer">
+        用心陪伴你的每一个清晨 · 专属私域出品
     </div>
-
-    <button class="submit-btn" onclick="startPay()">立即充值</button>
 </div>
-
-<script>
-    // 记录用户选中的金额，默认30
-    let selectedAmount = 30; 
-
-    // 切换面额按钮样式的动态函数
-    function selectPrice(element, amount) {
-        // 移除其他按钮的选中样式
-        document.querySelectorAll('.price-btn').forEach(btn => btn.classList.remove('active'));
-        // 给当前点击的按钮加上选中样式
-        element.classList.add('active');
-        // 更新选中的金额
-        selectedAmount = amount;
-    }
-
-    // 点击充值的动态函数
-    function startPay() {
-        const phoneInput = document.getElementById('phone').value;
-        
-        // 验证手机号是否输入正确
-        if (phoneInput.length !== 11 || isNaN(phoneInput)) {
-            alert('❌ 请输入正确的11位手机号码！');
-            return;
-        }
-        
-        // 弹出动态提示框
-        alert(`🎉 模拟充值成功！\n号码：${phoneInput}\n金额：${selectedAmount}元\n\n（提示：当前为前端演示，未对接真实支付接口）`);
-    }
-</script>
 
 </body>
 </html>
