@@ -12,6 +12,7 @@
             height: 100vh;
             background-color: #f5f7fb;
             font-family: sans-serif;
+            margin: 0;
         }
         .login-container {
             text-align: center;
@@ -19,6 +20,8 @@
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 400px;
         }
         button {
             background: #6c47ff;
@@ -28,6 +31,8 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -52,10 +57,14 @@
 
     <script>
         window.addEventListener('load', async function () {
-            // ⚠️把下面换成你复制的以 pk_test_ 开头的长字符串
+            // ⚠️把下面双引号里的文字替换为你复制的以 pk_test_ 开头的长字符串
             const publishableKey = "pk_test_cHJlY2lvdXMtY2hhbW9pcy0xLmNsZXJrLmFjY291bnRzLmRldiQ"; 
             
-            await Clerk.load({ publishableKey });
+            // 完美兼容线上环境的测试配置
+            await Clerk.load({ 
+                publishableKey: publishableKey,
+                frontendApi: "precious-chamois-1.clerk.accounts.dev"
+            });
 
             const signInBtn = document.getElementById('sign-in-btn');
             const userButtonDiv = document.getElementById('user-button');
